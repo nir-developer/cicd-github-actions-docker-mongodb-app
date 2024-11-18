@@ -80,13 +80,42 @@ describe('UsersAccess test suite', () => {
             docker pull mongo
 
 
-        3. Create a mongodb instance and run it in a docker container
+        3.Create a mongodb instance and run it in a docker container
             
             - mydatabase:
                  must match the url I provided in dbUri variable in DataBaseConnector class!
 
-            NOTE: no need Dockerfile - since simple example
-            docker container run --name mydatabase --publish 27018:27017 -d mongo
-c04ceb222392f85987acac640bd8aaeca177af41fc6ca9339c833c6e4a75ab80
+                 docker container run --name mydatabase --publish 27018:27017 -d mongo
+                 c04ceb222392f85987acac640bd8aaeca177af41fc6ca9339c833c6e4a75ab80
+
+
+
+    4.Run the tests -> THE TEST WILL BE EXECUTED ON A REAL MONGODB INSTANCE IN A DOCKER CONTAINER!!
+
+            GREAT!!
+
+
+        NOTE: no need Dockerfile - since simple example
+
+
+------------------------------------------
+        Integrate Docker Mongo Db instance into the GitHub workflow
+-------------------------------------
+
+    1.CLI:  Add - Commit - Push 
+
+    2. Check the workflow on GitHub remote repo
+        OK - FAILED ! SINCE I HAVE NOT CONFIGURED ANY DOCKER INSTANCE IN GITHUB PIPELINE
+
+    3. Update the node.yml file : 
+
+        - Add a new step 'Build Docker Mongo Image'
+
+         steps:
+             - uses: actions/checkout@v4
+
+             - name: Build Docker Image
+                run: docker pull mongo
+
 
  */
